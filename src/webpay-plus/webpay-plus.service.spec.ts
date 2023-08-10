@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { WebpayPlusService } from './webpay-plus.service';
-import { CreateTransaction } from './interfaces/create-transaction.interface';
 import { TokenTransaction } from './interfaces/token-transaction.interface';
 import { createTransactionObject } from './tests/helpers/webpay/faker/transaction';
+import { CreateTokenDto } from './dto/create-token.dto';
 
 describe('WebpayPlusService', () => {
   let service: WebpayPlusService;
@@ -20,7 +20,7 @@ describe('WebpayPlusService', () => {
   });
 
   it('generateTransaction', async () => {
-    const transaction: CreateTransaction = createTransactionObject();
+    const transaction: CreateTokenDto = createTransactionObject();
     const result: TokenTransaction | false = await service.generateTransaction(
       transaction,
     );

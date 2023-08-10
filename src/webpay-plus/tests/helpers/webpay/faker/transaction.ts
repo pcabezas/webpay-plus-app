@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
-import { CreateTransaction } from 'src/webpay-plus/interfaces/create-transaction.interface';
+import { CreateTokenDto } from 'src/webpay-plus/dto/create-token.dto';
 
-export const createTransactionObject = (): CreateTransaction => {
+export const createTransactionObject = (): CreateTokenDto => {
   return {
     buyOrder: faker.string.alphanumeric(9),
     sessionId: faker.string.alphanumeric(9),

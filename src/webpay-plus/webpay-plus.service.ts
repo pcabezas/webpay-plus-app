@@ -8,8 +8,8 @@ import {
   WebpayPlus,
 } from 'transbank-sdk';
 import Transaction from 'transbank-sdk/dist/es5/transbank/webpay/webpay_plus/transaction';
-import { CreateTransaction } from './interfaces/create-transaction.interface';
 import { TokenTransaction } from './interfaces/token-transaction.interface';
+import { CreateTokenDto } from './dto/create-token.dto';
 
 @Injectable()
 export class WebpayPlusService {
@@ -27,7 +27,7 @@ export class WebpayPlusService {
   }
 
   generateTransaction = async (
-    transaction: CreateTransaction,
+    transaction: CreateTokenDto,
   ): Promise<false | TokenTransaction> => {
     this.logger.debug('Start webpayTransaction with: ', transaction);
     const { buyOrder, sessionId, amount, returnUrl } = transaction;

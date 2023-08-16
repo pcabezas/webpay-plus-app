@@ -10,6 +10,7 @@ import {
 import Transaction from 'transbank-sdk/dist/es5/transbank/webpay/webpay_plus/transaction';
 import { TokenTransaction } from './interfaces/token-transaction.interface';
 import { CreateTokenDto } from './dto/create-token.dto';
+import { WEBPAY_RESULT_URL } from './constants/webpay';
 
 @Injectable()
 export class WebpayPlusService {
@@ -30,13 +31,13 @@ export class WebpayPlusService {
     transaction: CreateTokenDto,
   ): Promise<false | TokenTransaction> => {
     this.logger.debug('Start webpayTransaction with: ', transaction);
-    const { buyOrder, sessionId, amount, returnUrl } = transaction;
+    const { buyOrder, sessionId, amount } = transaction;
     try {
       const response = await this.webpayTransaction.create(
         buyOrder,
         sessionId,
         amount,
-        returnUrl,
+        WEBPAY_RESULT_URL,
       );
       this.logger.debug('webpayTransaction response: ', response);
       return response;

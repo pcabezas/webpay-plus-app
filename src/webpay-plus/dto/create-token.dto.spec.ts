@@ -73,24 +73,6 @@ describe('CreateToken', () => {
     );
   });
 
-  it('should throw when returnUrl is not present', async () => {
-    const validDtoObject = createTransactionObject();
-    const { returnUrl: _, ...badDtoObject } = validDtoObject;
-    const objectDto = plainToInstance(CreateTokenDto, badDtoObject);
-    const errors = await validate(objectDto);
-    expect(errors.length).not.toBe(0);
-    expect(JSON.stringify(errors)).toContain('returnUrl should not be empty');
-  });
-
-  it('should throw when returnUrl is a url', async () => {
-    const validDtoObject = createTransactionObject();
-    validDtoObject.returnUrl = 'not valid url';
-    const objectDto = plainToInstance(CreateTokenDto, validDtoObject);
-    const errors = await validate(objectDto);
-    expect(errors.length).not.toBe(0);
-    expect(JSON.stringify(errors)).toContain('returnUrl must be a URL address');
-  });
-
   it('Must be valid with valid DTO', async () => {
     const validDtoObject = createTransactionObject();
     const objectDto = plainToInstance(CreateTokenDto, validDtoObject);

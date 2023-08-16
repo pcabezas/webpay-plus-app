@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsUrl, Length, Max, Min } from 'class-validator';
+import { IsNotEmpty, IsString, Length, Max, Min } from 'class-validator';
 
 export class CreateTokenDto {
   @IsString()
@@ -15,9 +15,4 @@ export class CreateTokenDto {
   @Max(999999999)
   @IsNotEmpty()
   amount: number;
-
-  @IsString()
-  @IsNotEmpty()
-  @IsUrl()
-  returnUrl: string;
 }

@@ -1,12 +1,4 @@
-import {
-  IsDecimal,
-  IsNotEmpty,
-  IsString,
-  IsUrl,
-  Length,
-  Max,
-  Min,
-} from 'class-validator';
+import { IsNotEmpty, IsString, IsUrl, Length, Max, Min } from 'class-validator';
 
 export class CreateTokenDto {
   @IsString()
@@ -15,16 +7,17 @@ export class CreateTokenDto {
   buyOrder: string;
 
   @IsString()
+  @IsNotEmpty()
   @Length(9, 9)
   sessionId: string;
 
-  @IsDecimal({ decimal_digits: '2' })
   @Min(1)
   @Max(999999999)
   @IsNotEmpty()
   amount: number;
 
   @IsString()
+  @IsNotEmpty()
   @IsUrl()
   returnUrl: string;
 }

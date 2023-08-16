@@ -6,7 +6,7 @@ import { CreateTokenDto } from './dto/create-token.dto';
 export class WebpayPlusController {
   constructor(private readonly webpayService: WebpayPlusService) {}
 
-  @Post('/generate-token')
+  @Post('generate-token')
   async createToken(@Body() createTokenDto: CreateTokenDto) {
     return await this.webpayService.generateTransaction(createTokenDto);
   }

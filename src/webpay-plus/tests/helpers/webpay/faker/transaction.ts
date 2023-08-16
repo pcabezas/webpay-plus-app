@@ -5,7 +5,7 @@ export const createTransactionObject = (): CreateTokenDto => {
   return {
     buyOrder: faker.string.alphanumeric(9),
     sessionId: faker.string.alphanumeric(9),
-    amount: faker.number.float({ min: 5, max: 5, precision: 2 }),
+    amount: faker.number.int({ min: 1, max: 99999 }),
     returnUrl: 'http://0.0.0.0:3000/webpay/results',
   };
 };

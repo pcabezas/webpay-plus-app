@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 
 import {
   Environment,
@@ -11,6 +11,8 @@ import Transaction from 'transbank-sdk/dist/es5/transbank/webpay/webpay_plus/tra
 import { TokenTransaction } from './interfaces/token-transaction.interface';
 import { CreateTokenDto } from './dto/create-token.dto';
 import { WEBPAY_RESULT_URL } from './constants/webpay';
+import { TransactionResponseDto } from './dto/transation-response.dto';
+import { plainToInstance } from 'class-transformer';
 
 @Injectable()
 export class WebpayPlusService {
@@ -44,6 +46,20 @@ export class WebpayPlusService {
     } catch (error) {
       this.logger.error('webpayTransaction response: ', error);
       return false;
+    }
+  };
+
+  confirmTransaction = async (
+    token: string,
+  ): Promise<TransactionResponseDto> => {
+    this.logger.debug('Start webpayTransaction Commit with token ', token);
+    try {
+      const result = await this.webpayTransaction.commit(token);
+      this.logger.debug('Success webpayTransaction Commit response: ', result);
+      return plainToInstance(TransactionResponseDto, { ...result });
+    } catch (error) {
+      this.logger.error('webpayTransaction response on Commit: ', error);
+      throw new BadRequestException(error.message);
     }
   };
 }

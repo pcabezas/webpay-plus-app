@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { WebpayPlusService } from './webpay-plus.service';
 import { CreateTokenDto } from './dto/create-token.dto';
 
@@ -6,8 +6,14 @@ import { CreateTokenDto } from './dto/create-token.dto';
 export class WebpayPlusController {
   constructor(private readonly webpayService: WebpayPlusService) {}
 
-  @Post('create-transactions')
+  @Post('/transactions/create')
   async createToken(@Body() createTokenDto: CreateTokenDto) {
     return await this.webpayService.generateTransaction(createTokenDto);
+  }
+
+  @Get('/transactions/result')
+  async validateTransaction(@Query('token_ws') token_ws: string) {
+    const result = await this.webpayService.confirmTransaction(token_ws);
+    return result;
   }
 }

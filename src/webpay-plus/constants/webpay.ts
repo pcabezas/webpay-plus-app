@@ -1,1 +1,17 @@
-export const WEBPAY_RESULT_URL = 'http://0.0.0.0:3000/webpay/results';
+export const WEBPAY_RESULT_URL =
+  'http://0.0.0.0:3000/webpay-plus/transactions/result';
+
+export const SUCESS_TRANSACTION_RESPONSE = {
+  vci: 'TSY',
+  amount: 10990,
+  status: 'AUTHORIZED',
+  buy_order: 'R99999999',
+  session_id: 'S99999999',
+  card_detail: { card_number: '6666' },
+  accounting_date: '0821',
+  transaction_date: '2023-08-21T17:26:24.524Z',
+  authorization_code: '156191',
+  payment_type_code: 'VD',
+  response_code: 0,
+  installments_number: 0,
+};

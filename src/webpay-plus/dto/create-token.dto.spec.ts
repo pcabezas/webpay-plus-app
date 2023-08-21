@@ -77,7 +77,6 @@ describe('CreateToken', () => {
     const validDtoObject = createTransactionObject();
     const objectDto = plainToInstance(CreateTokenDto, validDtoObject);
     const errors = await validate(objectDto);
-    console.log(JSON.stringify(errors));
     expect(errors.length).toBe(0);
   });
 });

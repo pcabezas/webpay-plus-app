@@ -1,5 +1,5 @@
 export const WEBPAY_RESULT_URL =
-  'http://0.0.0.0:3000/webpay-plus/transactions/result';
+  'http://0.0.0.0:4000/api/v2/storefront/webpay/payment/transaction_result';
 
 export const SUCESS_TRANSACTION_RESPONSE = {
   vci: 'TSY',

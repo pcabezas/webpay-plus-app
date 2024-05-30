@@ -13,25 +13,25 @@ describe('CreateToken', () => {
     expect(JSON.stringify(errors)).toContain('buyOrder should not be empty');
   });
 
-  it('should throw when buyOrder is less than 9 characters', async () => {
+  it('should throw when buyOrder is less than 10 characters', async () => {
     const validDtoObject = createTransactionObject();
     validDtoObject.buyOrder = 'R1';
     const objectDto = plainToInstance(CreateTokenDto, validDtoObject);
     const errors = await validate(objectDto);
     expect(errors.length).not.toBe(0);
     expect(JSON.stringify(errors)).toContain(
-      'buyOrder must be longer than or equal to 9 characters',
+      'buyOrder must be longer than or equal to 10 characters',
     );
   });
 
-  it('should throw when buyOrder is greater than 9 characters', async () => {
+  it('should throw when buyOrder is greater than 10 characters', async () => {
     const validDtoObject = createTransactionObject();
-    validDtoObject.buyOrder = 'R111111111';
+    validDtoObject.buyOrder = 'R1111111111';
     const objectDto = plainToInstance(CreateTokenDto, validDtoObject);
     const errors = await validate(objectDto);
     expect(errors.length).not.toBe(0);
     expect(JSON.stringify(errors)).toContain(
-      'buyOrder must be shorter than or equal to 9 characters',
+      'buyOrder must be shorter than or equal to 10 characters',
     );
   });
 

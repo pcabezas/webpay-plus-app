@@ -3,12 +3,12 @@ import { IsNotEmpty, IsString, Length, Max, Min } from 'class-validator';
 export class CreateTokenDto {
   @IsString()
   @IsNotEmpty()
-  @Length(9, 9)
+  @Length(10, 10)
   buyOrder: string;
 
   @IsString()
   @IsNotEmpty()
-  @Length(9, 9)
+  @Length(10, 10)
   sessionId: string;
 
   @Min(1)
